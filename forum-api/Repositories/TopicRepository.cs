@@ -3,17 +3,23 @@
 namespace forum_api.Repositories
 {
 
-
-    public class TopicRepository
+    public class TopicRepository : ITopicRepository
     {
-        public List<Topic> FindAll()
+        private readonly forumdbContext _forumdbContext;
+
+        public TopicRepository(forumdbContext forumdbContext)
         {
-                List<Topic> topics = DataAccess.DataObjects.Topic.GetAll();
+            this._forumdbContext = forumdbContext;
         }
 
-        public virtual Topic FindById(int id)
+        public List<Topic> FindAll()
         {
-            return new Topic();
+            return this._forumdbContext.Topics.ToList();
+        }
+
+        public Topic FindById(int id)
+        {
+            return this._forumdbContext.Topics.FirstOrDefault(x => x.Idtopic == id);
         }
 
         public Topic Create(Topic topic)
@@ -25,6 +31,10 @@ namespace forum_api.Repositories
                 DateCreation = topic.DateCreation,
                 DateUpdate = topic.DateUpdate
             };
+
+            this._forumdbContext.Topics.Add(topic);
+            this._forumdbContext.SaveChanges();
+
             return topic;
         }
 
@@ -37,12 +47,18 @@ namespace forum_api.Repositories
                 DateCreation = topic.DateCreation,
                 DateUpdate = topic.DateUpdate
             };
+
+            this._forumdbContext.Topics.Update(topic);
+            this._forumdbContext.SaveChanges();
+
             return topic;
         }
 
         public int Delete(int id)
         {
-            Topic.DeleteOne(topic => topic.Id == id);
+            this._forumdbContext.Topics.Remove(FindById(id));
+            this._forumdbContext.SaveChanges();
+
             return id;
         }
     }

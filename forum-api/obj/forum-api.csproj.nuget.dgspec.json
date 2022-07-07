@@ -1,25 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\dev\\forum-api\\forum-api\\forum-api.csproj": {}
+    "C:\\Users\\sbena\\Desktop\\forum-api\\forum-api\\forum-api.csproj": {}
   },
   "projects": {
-    "C:\\dev\\forum-api\\forum-api\\forum-api.csproj": {
+    "C:\\Users\\sbena\\Desktop\\forum-api\\forum-api\\forum-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\dev\\forum-api\\forum-api\\forum-api.csproj",
+        "projectUniqueName": "C:\\Users\\sbena\\Desktop\\forum-api\\forum-api\\forum-api.csproj",
         "projectName": "forum-api",
-        "projectPath": "C:\\dev\\forum-api\\forum-api\\forum-api.csproj",
-        "packagesPath": "C:\\Users\\clair\\.nuget\\packages\\",
-        "outputPath": "C:\\dev\\forum-api\\forum-api\\obj\\",
+        "projectPath": "C:\\Users\\sbena\\Desktop\\forum-api\\forum-api\\forum-api.csproj",
+        "packagesPath": "C:\\Users\\sbena\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sbena\\Desktop\\forum-api\\forum-api\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\clair\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\sbena\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -83,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
