@@ -16,7 +16,7 @@ namespace forum_api.Services.Tests
     {
         
         private TopicService _service;
-        private Mock<TopicRepository> _repository;
+        private Mock<ITopicRepository> _repository;
         private List<Topic> _topics;
         private Comment comment;
 
@@ -24,14 +24,26 @@ namespace forum_api.Services.Tests
         [TestInitialize]
         public void Initialize()
         {
-            _repository = new Mock<TopicRepository>();
+            _repository = new Mock<ITopicRepository>();
             _service = new TopicService(_repository.Object);
             _topics = new List<Topic>();
-            _topics.Add(new Topic(1, "Gateau au chocolat", "Claire", new DateTime(), new DateTime(), 0, comment));
-            _topics.Add(new Topic(2, "Cours", "Lena",  new DateTime(), new DateTime(), 0, comment));
-            _topics.Add(new Topic(3, "Gateau a la fraise", "Audrey", new DateTime(), new DateTime(), 0, comment));
-            _topics.Add(new Topic(4, "Paris", "Danielle",new DateTime(), new DateTime(), 0, comment)); 
+            _topics.Add(new Topic());
+            _topics.Add(new Topic());
+            _topics.Add(new Topic());
+            _topics.Add(new Topic()); 
 
+        }
+
+
+        [TestMethod()]
+        public void FindAll_Ok()
+        {
+            //GIVEN
+            _repository.Setup(repo => repo.FindAll()).Returns(_topics);
+            //WHEN
+            List<Topic> topics = _service.FindAll();
+            //THEN
+            Assert.AreEqual(_topics, topics);
         }
 
         [TestMethod()]
@@ -40,12 +52,62 @@ namespace forum_api.Services.Tests
         public void FindById_IdOk(int id)
         {
             //GIVEN
-            _repository.Setup(repo => repo.FindById(id)).Returns(_topics.Find(v => v.Idtopic == id));
+            _repository.Setup(repo => repo.FindById(It.IsAny<int>())).Returns(_topics.Find(v => v.Idtopic == id));
             Topic expectedTopic = _topics.Find(v => v.Idtopic == id);
             //WHEN
             Topic topic = _service.FindById(id);
             //THEN
             Assert.AreEqual(expectedTopic, topic);
+        }
+               
+
+        [TestMethod()]
+        public void Create_Ok()
+        {
+            //GIVEN
+            Topic topic = new Topic() {
+            Idtopic=5,
+            Title= "Gateau nature",
+            Author = "Ben",
+            DateCreation = DateTime.Now,
+            DateUpdate = DateTime.Now,
+             };
+            _repository.Setup(repo => repo.Create(It.IsAny<Topic>())).Returns(topic);
+            //WHEN
+            Topic topic2 = _service.Create(topic);
+            //THEN
+            Assert.AreEqual(topic.Idtopic, topic2.Idtopic);
+        }
+
+        [TestMethod()]
+        public void Update_Ok()
+        {
+            //GIVEN
+            Topic topic = new Topic()
+            {
+                Idtopic = 1,
+                Title = "Gateau nature",
+                Author = "Claire",
+                DateCreation = DateTime.Now,
+                DateUpdate = DateTime.Now,
+            };
+            _repository.Setup(repo => repo.Update(It.IsAny<Topic>())).Returns(topic);
+            //WHEN
+            Topic topic2 = _service.Update(topic);
+            //THEN
+            Assert.AreEqual(topic, topic2);
+        }
+
+        [TestMethod()]
+        [DataRow(4)]
+        public void Delete_Ok(int id)
+        {
+            //GIVEN
+            _repository.Setup(repo => repo.Delete(It.IsAny<int>())).Returns(id);
+            //WHEN
+            int idTopic = _service.Delete(id);
+            //THEN
+            Assert.AreEqual(id, idTopic);
         }
     }
 }

@@ -5,9 +5,9 @@ namespace forum_api.Services
 {
     public class TopicService
     {
-        public TopicRepository repo;
+        public ITopicRepository repo;
 
-        public TopicService(TopicRepository repo)
+        public TopicService(ITopicRepository repo)
         {
             this.repo = repo;
         }
@@ -24,14 +24,12 @@ namespace forum_api.Services
 
         public Topic Create(Topic topic)
         {
-            Topic newTopic = new Topic();
-            return newTopic;
+            return this.repo.Create(topic);
         }
 
         public Topic Update(Topic topic)
         {
-            Topic newTopic = new Topic();
-            return newTopic;
+            return this.repo.Update(topic);
         }
 
         public int Delete(int id)

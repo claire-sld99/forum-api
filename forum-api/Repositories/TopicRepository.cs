@@ -24,14 +24,6 @@ namespace forum_api.Repositories
 
         public Topic Create(Topic topic)
         {
-            topic = new Topic()
-            {
-                Title = topic.Title,
-                Author = topic.Author,
-                DateCreation = topic.DateCreation,
-                DateUpdate = topic.DateUpdate
-            };
-
             this._forumdbContext.Topics.Add(topic);
             this._forumdbContext.SaveChanges();
 
@@ -40,14 +32,6 @@ namespace forum_api.Repositories
 
         public Topic Update(Topic topic)
         {
-            topic = new Topic()
-            {
-                Title = topic.Title,
-                Author = topic.Author,
-                DateCreation = topic.DateCreation,
-                DateUpdate = topic.DateUpdate
-            };
-
             this._forumdbContext.Topics.Update(topic);
             this._forumdbContext.SaveChanges();
 

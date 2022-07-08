@@ -16,15 +16,6 @@ namespace forum_api.DataAccess.DataObjects
 
         public virtual Comment? Comment { get; set; }
 
-        public Topic(int idtopic, string title, string author,  DateTime dateTime1, DateTime dateTime2, int commentId, Comment comment)
-        {
-            this.Idtopic = idtopic;
-            this.Title = title;
-            this.Author = author;
-            this.DateCreation = dateTime1;
-            this.DateUpdate = dateTime2;
-            this.CommentId = commentId;
-            this.Comment = comment;
-        }
+        
     }
 }

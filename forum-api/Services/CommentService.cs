@@ -6,9 +6,9 @@ namespace forum_api.Services
     public class CommentService
     {
 
-        private CommentRepository repo;
+        private ICommentRepository repo;
 
-        public CommentService(CommentRepository repo)
+        public CommentService(ICommentRepository repo)
         {
             this.repo = repo;
         }
@@ -25,14 +25,12 @@ namespace forum_api.Services
 
         public Comment Create(Comment comment)
         {
-            Comment newComment = new Comment();
-            return newComment;
+            return this.repo.Create(comment);
         }
 
         public Comment Update(Comment comment)
         {
-            Comment newComment = new Comment();
-            return newComment;
+            return this.repo.Update(comment);
         }
 
         public int Delete(int id)
